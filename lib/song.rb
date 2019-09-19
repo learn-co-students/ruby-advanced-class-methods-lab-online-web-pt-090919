@@ -22,4 +22,22 @@ class Song
     song
   end
   
+  def self.create_by_name(song_name)
+    song = self.create
+    song.name = song_name
+    song 
+  end
   
+  def self.find_by_name(song_name)
+    self.all.detect{|s| s.name == song_name}
+  end
+  
+  def self.find_or_create_by_name(song_name)
+    self.find_by_name(song_name) || self.create_by_name(song_name)
+  end
+  
+  def self.alphabetical
+    self.all.sort_by{|s| s.name}
+  end
+  
+  def self.new
